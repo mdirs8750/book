@@ -1,0 +1,33 @@
+/* #for headercard */
+.cart1 h1{
+    display: flex;
+    justify-content: space-around;
+    font-style: italic;
+    text-align: center;
+    text-shadow: 50px;
+}
+/* crousel padding */
+.crousalp{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/* for home cards */
+.cards{
+    display: flex;
+}
+
+.medical{
+    display: flex;
+}
+
+/* for footer */
+.foots{
+    display:block;
+    background: linear-gradient(rgb(148, 148, 201), rgb(196, 80, 80));
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+.foots1{
+    margin-left: auto;
+    display: flex;
+}

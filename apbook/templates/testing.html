@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load cart %}
+
+{% block content %}
+    <h1>this is testing page</h1>
+	<div class="container">	
+		<div class="row mx-auto">
+			<div class="col-lg-3">
+				<div class="dropdown">
+					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+					  Dropdown link
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<div class="group">
+							<li>
+				
+								{% for category in cate %}
+								
+								<a href="/test/?category={{category.id}}" class="list-group-item list-group-item-action " aria-current="true">
+					 	 		{{category.name}}
+								</a>
+								{% endfor %}
+								
+							</li>
+						</div>
+					</ul>
+				</div>
+			</div>
+			{% for img in  imge%}
+			<div class="card mx-auto my-3" style="width: 18rem;">
+				<img src="{{img.image.url}}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">{{img.productname}}</h5>
+				  <p class="card-text">rs{{img.price}}</p>
+
+					<div class="card_footer row">
+						{% if img|isexistincart:request.session.cart%}
+						<div class="row">
+							<form action="/test/#{{img.id}}" method="post" class="col-2">
+								{% csrf_token %}
+								<input type="text" name="cartid" value="{{img.id}}" hidden>
+								<input type="text" name="minus" value="True" hidden>
+								<input type="submit" value="-" class="btn btn-block btn-dark">
+							</form>
+							<div class="text-center col">
+								{{img|cartquant:request.session.cart}}
+							</div>
+	
+							<form action="/test/#{{img.id}}" method="post" class="col-2">
+								{% csrf_token %}
+							
+								<input type="text" name="cartid" value="{{img.id}}" hidden>
+								<input type="submit" value="+" class="btn btn-block btn-dark">
+							</form>
+							{% else %}
+							<form action="/test/#{{img.id}}" method="post" class="btn-block">
+								{% csrf_token %}
+							
+								<input type="text" name="cartid" value="{{img.id}}" hidden>
+								<input type="submit" value="add to card" class="btn btn-block btn-dark btn-primary form-control">
+							</form>
+
+							{% endif %}
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		
+	</div>
+
+{% endblock content %}	
+
+	
+	

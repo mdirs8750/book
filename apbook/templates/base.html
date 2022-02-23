@@ -1,0 +1,230 @@
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href= "{% static 'css/first.css' %}">
+    <script src="{%static 'js/script.js'%}"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+  <!-- to display icon in icon different forms  -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest'%}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg'%}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Book shop</title>
+    
+    
+  </head>
+  <body>
+    
+    <!-- {% block header %}
+    
+    {% endblock header %} -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">{{request.session.firstname}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'cart' %}">Best Seller</a>
+            </li>
+            <li> 
+              <a class="nav-link active" href="{% url 'about' %}">Authors</a> 
+            </li>
+            <li>
+              <a href="{% url 'test' %}" class="nav-link active">Fiction</a>
+            </li>
+            <li><a class="nav-link active" href="{% url 'order' %}">Action</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li>
+              <a class="nav-link active"  href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          <a href="{% url 'cart' %}" class="btn btn-primary mx-1" >cart
+            <span>{{request.session.cart|length}}</span>
+          </a>
+            {% if request.session.email %}
+            <form class="d-flex" action = "{% url 'logout' %}" method = "post">
+              {% csrf_token %}
+            <button type="submit" class="btn btn-primary mx-1 " value  = "Logout">
+            Logout
+            </button>  
+            </form>  
+            <form class="d-flex" action=""> 
+              {% csrf_token %}      
+            <a href="{% url 'order' %}" class="btn btn-primary mx-1">Order</a>
+            </form> 
+            {% else %}
+            <button type="button" class="btn btn-primary mx-1 " data-bs-toggle="modal" data-bs-target="#exampleModal">   
+              Login
+            </button>            
+            <button type="button" class="btn btn-primary mx-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              SignUp
+            </button>
+            {% endif %}
+          </nav>
+            
+          
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">SignUp here</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form class= "#" action="{% url 'signup' %}" method="POST" name="signupform" onsubmit="return validateform()">
+                        {% csrf_token %}
+                        <label class="mg">First Name:</label>
+                        <input type="text" name= "fname" placeholder="Enter your name..">
+                        <br>
+                        <label class="mg">Last Name:</label>
+                        <input type="text" name = "lname"  placeholder="last name">
+                        <br>
+                        <label class="mg">Email:    </label>
+                        <input type="email" name="email"  placeholder="enter your email">
+                        <br>
+                        <label class="mg">Phone No:</label>
+                        <input type="phone" name="phone" placeholder="enter your phone no">
+                        <br>
+                        <label class="mg">Password</label>
+                        <input type="charfield" name="password" placeholder="new password">
+                        <br>
+                        {% comment %} <div class="col-md-6"> {% endcomment %}
+                          <label for="gender" class="form-label">Gender</label>
+                          <br>
+                          <input type="radio" class="form-check-input mx-3" id="gender" name = "gender" value = "male" >Male
+                          <input type="radio" class="form-check-input mx-3  " id="gender" name = "gender" value = "female">Female
+                        {% comment %} </div> {% endcomment %}
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <input type="submit" class="btn btn-primary" value="Save">
+                        </div>
+                       {% comment %} <label class="mg">confirm password</label>
+                       <input type="charfield" name="conf" placeholder="confirm passwword">
+                       <br> {% endcomment %}
+                       {% comment %} <input type="submit" value="save"> {% endcomment %}
+                      
+                </div>
+              </div>
+          
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- log in button -->
+      <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{% url 'login' %}" name="loginform" onsubmit="return validateform()" >
+          {% csrf_token %}
+          <div class="row">
+            <div id="valid"></div>
+            <div class="col">
+              <input type="text" class="form-control" name="email" id="email" placeholder="email" aria-label="email">
+            </div>
+            <div class="col">
+              <input type="password" class="form-control" name="password" id="password"  placeholder="password" aria-label="password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" value="Save">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <a href="">logout</a> -->
+
+    
+{% block content %}{% endblock content %}
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+{% block foot %}
+    <footer>
+      <div class="container foots">
+        <div class="foots1">
+          <div class="col">
+            <h4>About Company</h4>
+              <a href="#">Company status</a>
+              <br>
+              <a href="#">Our partners</a>
+          </div>
+          <div class="col">
+            <h4>Hr contacts details</h4>
+              <label>Email:</label>
+              <a href="#">irshad7860md@gmail.com</a>
+              <br>
+              <label>Call:</label>
+              <a href="#">8750450684</a>
+          </div>
+          <div class="col">
+            <h4>Your Views</h4>
+              <input type="textarea" name="commnts" placeholder="write your views">
+          </div>
+        </div>
+      </div>
+   
+    </footer>
+{% endblock foot %}
+  </body>
+  <script>
+    if (window.history.replaceState){
+      (window.history.replaceState(null,null,window.location.href));
+      
+    }
+  </script>
+</html>
