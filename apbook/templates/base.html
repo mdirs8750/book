@@ -20,7 +20,7 @@
     <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg'%}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <title>Book shop</title>
+    {% block title %}<title>Book shop</title>{% endblock title %}
     
     
   </head>
@@ -45,7 +45,7 @@
               <a class="nav-link active" href="{% url 'cart' %}">Best Seller</a>
             </li>
             <li> 
-              <a class="nav-link active" href="{% url 'about' %}">Authors</a> 
+              <a class="nav-link active" href="{% url 'chk' %}">Authors</a> 
             </li>
             <li>
               <a href="{% url 'test' %}" class="nav-link active">Fiction</a>
@@ -109,20 +109,25 @@
                   <div class="modal-body">
                       <form class= "#" action="{% url 'signup' %}" method="POST" name="signupform" onsubmit="return validateform()">
                         {% csrf_token %}
+                        <div id="valid1"></div>
                         <label class="mg">First Name:</label>
-                        <input type="text" name= "fname" placeholder="Enter your name..">
+                        <input type="text" name= "fname" id="fname1" placeholder="Enter your name..">
                         <br>
+                        <div id="valid2"></div>
                         <label class="mg">Last Name:</label>
-                        <input type="text" name = "lname"  placeholder="last name">
+                        <input type="text" name = "lname" id="lname1" placeholder="last name">
                         <br>
+                        <div id="valid3"></div>
                         <label class="mg">Email:    </label>
-                        <input type="email" name="email"  placeholder="enter your email">
+                        <input type="email" name="email" id="email1" placeholder="enter your email">
                         <br>
+                        <div id="valid5"></div>
                         <label class="mg">Phone No:</label>
-                        <input type="phone" name="phone" placeholder="enter your phone no">
+                        <input type="phone" name="phone" id="phone1" placeholder="enter your phone no">
                         <br>
+                        <div id="valid6"></div>
                         <label class="mg">Password</label>
-                        <input type="charfield" name="password" placeholder="new password">
+                        <input type="charfield" name="password" id="password1" placeholder="new password">
                         <br>
                         {% comment %} <div class="col-md-6"> {% endcomment %}
                           <label for="gender" class="form-label">Gender</label>
@@ -141,7 +146,6 @@
                       
                 </div>
               </div>
-          
             </div>
           </form>
         </div>

@@ -8,14 +8,30 @@ from django.http import HttpResponse,HttpResponseRedirect
 from sympy import Order
 from .models import clnt_info, order, product, Category
 from django.contrib.auth.models import User
+
+#for password validations
 from django.contrib.auth.hashers import make_password,check_password
+#end
+
+#for api root strt
+from rest_framework import routers, serializers, viewsets
+#end
+
+#for sending email as greeting
+from django.core.mail import send_mail
+
+from .serializer import demo_restframe, restframework
 
 # Create your views here.
 def base(request):
     return render(request,'base.html')
 
 def home(request):
+
+    
+
     nam = None
+    request.session['checkcart']=0
     # nam=request.session['email']
     
     #    # request.session.modifiesd = true
@@ -40,6 +56,15 @@ def signup(request):
         #print(fname,lname,eml,phn)
         d=clnt_info(firstname=fname,lastname=lname,phone=phn,emails=eml,password=make_password(pwd),gender=gen)
         d.save()
+        #for sending email as greeting strt
+        # send_mail(
+        #     "thanks for signing up ",
+        #     'welcome to ebook shop created by MD irshad',
+        #     "faizan7860md@gmail.com",
+        #     [eml] 
+        # )
+        
+        #greeting eamil end
         return redirect('home')
     return render (request,'home.html')
 
@@ -73,8 +98,10 @@ def login(request):
 
 def test(request):
     path=None
+    # request.session['checkcart']=0
 
     if request.method =="POST":
+        request.session['checkcart']=1
         product_id=request.POST.get('cartid')
         remove = request.POST.get('minus')
 
@@ -107,6 +134,7 @@ def test(request):
         path =product.objects.filter(category_id=cat_id)
     else:
         path= product.objects.all()
+
     return render(request,'testing.html', {'imge':path,'cate':cat})
 
 def logout(request):
@@ -114,12 +142,15 @@ def logout(request):
     return redirect ('home') 
 
 def cart(request):
+    try:
+        # if request.session['checkcart']==1:
 
-    p=list(request.session.get('cart').keys())
-    f=product.objects.filter(id__in=p)
-    
-
-    return render(request,'cart.html',{"f":f})
+        p=list(request.session.get('cart').keys())
+        f=product.objects.filter(id__in=p)
+            
+        return render(request,'cart.html',{"f":f})
+    except:
+        return render(request,'cart.html')
     
 
 def checkout(request):
@@ -163,3 +194,11 @@ def orderd(request):
     return render(request,'orddtl.html',{'orderdtl':orderdtl,'c':c})
 
 
+def chk(request):
+    return render(request,'check.html')
+
+
+#for api root                   
+class demorestframe(viewsets.ModelViewSet):
+    queryset = restframework.objects.all()
+    serializer_class = demo_restframe

@@ -35,7 +35,7 @@
   {% comment %} card for slider {% endcomment %}
         <div class="card-group crousalp">
             <div class="card">
-              <img src="{% static 'images/commando1.jpg' %}" height="60%" width="40%" class="card-img-top" alt="error">
+              <img src="{% static 'images/commando1.jpg' %}" width="100%" height="300px" class="card-img-top" alt="error">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -44,7 +44,7 @@
             </div>
             
             <div class="card">
-              <img src="{% static 'images/halfg1.jpg' %}" class="card-img-top" alt="...">
+              <img src="{% static 'images/halfg1.jpg' %}" width="100%" height="300px" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -53,7 +53,7 @@
             </div>
               
             <div class="card">
-              <img src="{% static 'images/harrypotter1.jpg' %}" class="card-img-top" alt="...">
+              <img src="{% static 'images/harrypotter1.jpg' %}" width="100%" height="300px" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
@@ -72,7 +72,15 @@
     <!-- cards for direct buying books  -->
     <div class="cards crousalp">
         <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/attitude.jpg' %}" class="card-img-top" alt="...">
+            <img src="{% static 'images/attitude.jpg' %}" width="100%" height="200px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div> 
+        <div class="card" style="width: 18rem;">
+            <img src="{% static 'images/richdad adn poordad.jpg' %}" class="card-img-top" width="100%" height="200px" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -80,15 +88,7 @@
             </div>
         </div>
         <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/richdad adn poordad.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/kalk.jpeg' %}" class="card-img-top" alt="...">
+            <img src="{% static 'images/kalk.jpeg' %}" class="card-img-top" width="100%" height="200px" alt="...">
             <div class="card-body">
               <h5 class="card-title">Kalk</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -96,7 +96,7 @@
             </div>
         </div>  
         <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/think and grow.jpg' %}" class="card-img-top" alt="...">
+            <img src="{% static 'images/think and grow.jpg' %}" class="card-img-top" width="100%" height="200px" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -107,9 +107,9 @@
 
     {% comment %} for medical books {% endcomment %}
     <h1>Thriller books</h1>
-    <div class="cards crousalp">
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/black warrant.jpg' %}" class="card-img-top" alt="...">
+      <div class="cards crousalp d-lg-flex">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static 'images/black warrant.jpg' %}" class="card-img-top"  width="100%" height="200px"alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -117,7 +117,7 @@
             </div>
           </div>
           <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/take down.jpg' %}" class="card-img-top" alt="...">
+            <img src="{% static 'images/take down.jpg' %}" class="card-img-top" width="100%" height="200px" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -125,7 +125,7 @@
             </div>
           </div>
           <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/the extra.jpg' %}" class="card-img-top" alt="...">
+            <img src="{% static 'images/the extra.jpg' %}" class="card-img-top" width="100%" height="200px"  alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -133,7 +133,7 @@
             </div>
           </div>
           <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/breakline.jpg' %}" class="card-img-top" alt="...">
+            <img src="{% static 'images/breakline.jpg' %}" class="card-img-top" width="100%" height="200px" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -141,15 +141,14 @@
             </div>
           </div>
           <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/400days.jpg' %}" class="card-img-top" alt="...">
+            <img src="{% static 'images/400days.jpg' %}" class="card-img-top" width="100%" height="200px" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
-
-    </div>
+        </div>
     
     
 

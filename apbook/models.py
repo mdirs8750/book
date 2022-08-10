@@ -1,6 +1,7 @@
 
 from atexit import register
 import datetime
+import email
 from email.headerregistry import Address
 from email.policy import default
 from django.db import models
@@ -51,3 +52,10 @@ class order(models.Model):
 
     def __str__(self): 
         return self.Address
+
+class restframework(models.Model):
+    email=models.CharField(max_length=250)
+    name=models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name

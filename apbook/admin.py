@@ -1,7 +1,7 @@
 from telnetlib import STATUS
 from unicodedata import category
 from django.contrib import admin
-from .models import clnt_info, order, product ,Category
+from .models import clnt_info, order, product ,Category, restframework
 # from book.apbook.models import uploadimg
 
 # Register your models here.
@@ -12,3 +12,4 @@ admin.site.register(clnt_info)
 admin.site.register(product)
 admin.site.register(Category)
 admin.site.register(order)
+admin.site.register(restframework)
